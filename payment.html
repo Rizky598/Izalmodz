@@ -52,11 +52,11 @@
             text-size-adjust: none;
         }
         
-        /* Digital Clock */
-        .digital-clock {
+        /* Combined Clock and Prayer Times Widget */
+        .combined-widget {
             position: fixed;
             top: 20px;
-            left: 20px;
+            right: 20px;
             background: rgba(44, 16, 81, 0.7);
             backdrop-filter: blur(15px);
             border-radius: 15px;
@@ -66,6 +66,13 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             animation: fadeInDown 1s ease;
+            min-width: 250px;
+        }
+        
+        .clock-section {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .clock-time {
@@ -75,6 +82,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 5px;
+            text-align: center;
         }
         
         .clock-date {
@@ -89,12 +97,49 @@
             text-align: center;
             margin-top: 3px;
         }
+        
+        .prayer-section {
+            margin-top: 15px;
+        }
+        
+        .prayer-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ffcc70;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .prayer-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+            padding: 3px 0;
+        }
+        
+        .prayer-item.current {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            padding: 5px;
+            color: #ffcc70;
+            font-weight: bold;
+        }
+        
+        .prayer-name {
+            color: #e0b3ff;
+        }
+        
+        .prayer-time {
+            color: #fff;
+            font-weight: 500;
+        }
 
         /* Admin Button */
         .admin-button {
             position: fixed;
-            top: 100px;
-            left: 20px;
+            top: 320px;
+            right: 90px;
             width: 50px;
             height: 50px;
             background: linear-gradient(45deg, #ff6b6b, #ee5a24);
@@ -115,6 +160,96 @@
         .admin-button:hover {
             transform: scale(1.1);
             box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Menu Dropdown Button */
+        .menu-dropdown-button {
+            position: fixed;
+            top: 320px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #8a2be2, #6a5acd);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInDown 1s ease 0.4s both;
+        }
+
+        .menu-dropdown-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(138, 43, 226, 0.6);
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: fixed;
+            top: 380px;
+            right: 30px;
+            width: 200px;
+            background: rgba(44, 16, 81, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: #e0b3ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .dropdown-item i {
+            margin-right: 12px;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+            background: linear-gradient(45deg, #ff7eee, #ffcc70);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dropdown-item:hover i {
+            background: linear-gradient(45deg, #fff, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Admin Panel Sidebar */
@@ -498,56 +633,6 @@
         .admin-overlay.active {
             opacity: 1;
             visibility: visible;
-        }
-        
-        /* Prayer Times Widget */
-        .prayer-times {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(44, 16, 81, 0.7);
-            backdrop-filter: blur(15px);
-            border-radius: 15px;
-            padding: 15px;
-            color: white;
-            z-index: 1000;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            animation: fadeInDown 1s ease 0.2s both;
-            min-width: 200px;
-        }
-        
-        .prayer-title {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #ffcc70;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .prayer-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 0.85rem;
-            padding: 3px 0;
-        }
-        
-        .prayer-item.current {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            padding: 5px;
-            color: #ffcc70;
-            font-weight: bold;
-        }
-        
-        .prayer-name {
-            color: #e0b3ff;
-        }
-        
-        .prayer-time {
-            color: #fff;
-            font-weight: 500;
         }
         
         /* Prayer Notification */
@@ -1221,21 +1306,15 @@
                 padding: 25px;
             }
             
-            .digital-clock {
+            .combined-widget {
                 top: 10px;
-                left: 10px;
+                right: 10px;
                 padding: 10px 15px;
+                min-width: 200px;
             }
             
             .clock-time {
                 font-size: 1.4rem;
-            }
-            
-            .prayer-times {
-                top: 10px;
-                right: 10px;
-                padding: 10px;
-                min-width: 160px;
             }
             
             .prayer-title {
@@ -1247,10 +1326,25 @@
             }
 
             .admin-button {
-                left: 180px;
+                top: 280px;
+                right: 65px;
                 width: 45px;
                 height: 45px;
                 font-size: 18px;
+            }
+
+            .menu-dropdown-button {
+                top: 280px;
+                right: 10px;
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+
+            .dropdown-menu {
+                top: 335px;
+                right: 10px;
+                width: 180px;
             }
 
             .admin-panel {
@@ -1297,22 +1391,14 @@
                 font-size: 45px;
             }
             
-            .digital-clock {
+            .combined-widget {
                 position: relative;
                 top: auto;
                 left: auto;
                 margin: 10px auto 20px;
                 display: block;
                 width: fit-content;
-            }
-            
-            .prayer-times {
-                position: relative;
-                top: auto;
-                right: auto;
-                margin: 0 auto 20px;
-                display: block;
-                width: fit-content;
+                min-width: 200px;
             }
 
             .admin-button {
@@ -1322,21 +1408,92 @@
                 margin: 10px auto;
                 display: block;
             }
+
+            .menu-dropdown-button {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin: 10px auto;
+                display: block;
+            }
+
+            .dropdown-menu {
+                position: relative;
+                top: auto;
+                left: auto;
+                width: 100%;
+                margin: 10px auto;
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Digital Clock -->
-    <div class="digital-clock">
-        <div class="clock-time" id="clockTime">00:00:00</div>
-        <div class="clock-date" id="clockDate">Loading...</div>
-        <div class="clock-location">📍 Sumedang, Jawa Barat</div>
+    <!-- Combined Clock and Prayer Times Widget -->
+    <div class="combined-widget">
+        <div class="clock-section">
+            <div class="clock-time" id="clockTime">00:00:00</div>
+            <div class="clock-date" id="clockDate">Loading...</div>
+            <div class="clock-location">📍 Sumedang, Jawa Barat</div>
+        </div>
+        <div class="prayer-section">
+            <div class="prayer-title">🕌 Waktu Sholat</div>
+            <div class="prayer-item" id="fajr">
+                <span class="prayer-name">Subuh</span>
+                <span class="prayer-time">--:--</span>
+            </div>
+            <div class="prayer-item" id="dhuhr">
+                <span class="prayer-name">Dzuhur</span>
+                <span class="prayer-time">--:--</span>
+            </div>
+            <div class="prayer-item" id="asr">
+                <span class="prayer-name">Ashar</span>
+                <span class="prayer-time">--:--</span>
+            </div>
+            <div class="prayer-item" id="maghrib">
+                <span class="prayer-name">Maghrib</span>
+                <span class="prayer-time">--:--</span>
+            </div>
+            <div class="prayer-item" id="isha">
+                <span class="prayer-name">Isya</span>
+                <span class="prayer-time">--:--</span>
+            </div>
+        </div>
     </div>
 
     <!-- Admin Button -->
     <button class="admin-button" onclick="toggleAdminPanel()" title="Admin Panel">
         <i class="fas fa-cog"></i>
     </button>
+
+    <!-- Menu Dropdown Button -->
+    <button class="menu-dropdown-button" onclick="toggleDropdownMenu()" title="Menu Harga">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdownMenu">
+        <a href="harga-panel.html" class="dropdown-item">
+            <i class="fas fa-server"></i>
+            Harga Panel
+        </a>
+        <a href="harga-murid-band.html" class="dropdown-item">
+            <i class="fas fa-music"></i>
+            Harga Murid Band
+        </a>
+        <a href="harga-vps.html" class="dropdown-item">
+            <i class="fas fa-cloud"></i>
+            Harga VPS
+        </a>
+        <a href="album-foto.html" class="dropdown-item">
+            <i class="fas fa-camera"></i>
+            Album Foto
+        </a>
+        <a href="info-website.html" class="dropdown-item">
+            <i class="fas fa-info-circle"></i>
+            Info Website
+        </a>
+    </div>
 
     <!-- Admin Panel Overlay -->
     <div class="admin-overlay" id="adminOverlay" onclick="closeAdminPanel()"></div>
@@ -1463,31 +1620,6 @@
         </div>
     </div>
 
-    <!-- Prayer Times -->
-    <div class="prayer-times">
-        <div class="prayer-title">🕌 Waktu Sholat</div>
-        <div class="prayer-item" id="fajr">
-            <span class="prayer-name">Subuh</span>
-            <span class="prayer-time">--:--</span>
-        </div>
-        <div class="prayer-item" id="dhuhr">
-            <span class="prayer-name">Dzuhur</span>
-            <span class="prayer-time">--:--</span>
-        </div>
-        <div class="prayer-item" id="asr">
-            <span class="prayer-name">Ashar</span>
-            <span class="prayer-time">--:--</span>
-        </div>
-        <div class="prayer-item" id="maghrib">
-            <span class="prayer-name">Maghrib</span>
-            <span class="prayer-time">--:--</span>
-        </div>
-        <div class="prayer-item" id="isha">
-            <span class="prayer-name">Isya</span>
-            <span class="prayer-time">--:--</span>
-        </div>
-    </div>
-
     <!-- Prayer Notification -->
     <div class="prayer-notification" id="prayerNotification">
         <h3 id="prayerNotificationTitle">🕌 Waktu Sholat</h3>
@@ -1512,7 +1644,7 @@
     <!-- Video Background -->
     <div class="video-background">
         <video id="backgroundVideo" muted loop preload="auto">
-            <source src="video.mp4" type="video/mp4">
+            <source src="https://files.catbox.moe/y45t7q.mp4" type="video/mp4">
         </video>
     </div>
 
@@ -2358,6 +2490,30 @@
                     document.getElementById('backgroundVideo').play();
                 }
             });
+        });
+
+        // Dropdown Menu Functions
+        function toggleDropdownMenu() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('dropdownMenu');
+            const button = document.querySelector('.menu-dropdown-button');
+            
+            if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // Close dropdown when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const dropdown = document.getElementById('dropdownMenu');
+                dropdown.classList.remove('show');
+            }
         });
     </script>
 </body>
